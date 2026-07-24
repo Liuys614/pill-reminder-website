@@ -114,7 +114,7 @@ img { display: block; max-width: 100%; }
   filter: blur(2px);
 }
 .hero-phone {
-  position: relative; width: min(320px, 78vw); border-radius: 34px; box-shadow: var(--shadow);
+  position: relative; width: min(320px, 78vw); height: auto; border-radius: 34px; box-shadow: var(--shadow);
   outline: 8px solid var(--ink); outline-offset: -1px;
 }
 
@@ -177,7 +177,7 @@ img { display: block; max-width: 100%; }
 .text-link:hover { text-decoration: underline; }
 
 .privacy-phone-wrap { display: flex; justify-content: center; }
-.privacy-phone { width: min(300px, 74vw); border-radius: 32px; box-shadow: var(--shadow); outline: 8px solid var(--ink); outline-offset: -1px; }
+.privacy-phone { width: min(300px, 74vw); height: auto; border-radius: 32px; box-shadow: var(--shadow); outline: 8px solid var(--ink); outline-offset: -1px; }
 
 /* CTA */
 .cta-section { padding: 20px 0 76px; }
