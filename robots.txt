@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://liuys614.github.io/pill-reminder-website/sitemap.xml
