@@ -11,10 +11,19 @@
   --brand: #3d4a5e;
   --brand-dark: #2c3646;
   --brand-soft: #e8edf3;
+  --on-brand: #ffffff;
   --taken: #267a4b;
   --taken-soft: #e5f6ec;
   --due: #985b00;
   --due-soft: #fff0d6;
+  --header-bg: rgba(244, 245, 246, 0.88);
+  --hairline: rgba(33, 42, 53, 0.08);
+  --hairline-strong: rgba(33, 42, 53, 0.1);
+  --nav-hover: rgba(255, 255, 255, 0.7);
+  --phone-outline: #2c3646;
+  --scrollbar-thumb: rgba(33, 42, 53, 0.16);
+  --orbit-brand: rgba(61, 74, 94, 0.16);
+  --orbit-taken: rgba(38, 122, 75, 0.12);
   --shadow: 0 24px 64px rgba(33, 42, 53, 0.10), 0 6px 18px rgba(33, 42, 53, 0.06);
   --shadow-soft: 0 10px 30px rgba(33, 42, 53, 0.07), 0 2px 8px rgba(33, 42, 53, 0.04);
   --content: 1180px;
@@ -50,8 +59,8 @@ img { display: block; max-width: 100%; }
   position: sticky;
   top: 0;
   z-index: 50;
-  border-bottom: 1px solid rgba(33, 42, 53, 0.07);
-  background: rgba(244, 245, 246, 0.88);
+  border-bottom: 1px solid var(--hairline);
+  background: var(--header-bg);
   -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
 }
@@ -67,15 +76,30 @@ img { display: block; max-width: 100%; }
   border-radius: 12px; color: var(--muted); font-size: 0.88rem; font-weight: 650;
   text-decoration: none; transition: color 180ms ease, background-color 180ms ease;
 }
-.nav-links a:hover { color: var(--ink); background: rgba(255, 255, 255, 0.7); }
+.nav-links a:hover { color: var(--ink); background: var(--nav-hover); }
 
 .nav-download {
-  margin-left: 7px; background: var(--brand); color: var(--white) !important;
+  margin-left: 7px; background: var(--brand); color: var(--on-brand) !important;
   padding: 0 18px !important; border-radius: 12px;
 }
 .nav-download:hover { background: var(--brand-dark); }
 .nav-download.is-disabled { background: var(--paper-deep); color: var(--muted) !important; cursor: default; }
 .nav-download.is-disabled:hover { background: var(--paper-deep); }
+
+/* Theme toggle — only useful with JS, so it stays hidden until script.js runs */
+.theme-toggle { display: none; }
+.js .theme-toggle {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 42px; height: 42px; margin-left: 4px; padding: 0;
+  border: none; border-radius: 12px; background: transparent; color: var(--muted);
+  cursor: pointer; transition: color 180ms ease, background-color 180ms ease;
+}
+.theme-toggle:hover { color: var(--ink); background: var(--nav-hover); }
+.theme-toggle:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+.theme-toggle svg { width: 19px; height: 19px; display: block; }
+.theme-toggle .icon-moon { display: none; }
+:root[data-theme="dark"] .theme-toggle .icon-sun { display: none; }
+:root[data-theme="dark"] .theme-toggle .icon-moon { display: block; }
 
 /* Buttons */
 .button {
@@ -83,7 +107,7 @@ img { display: block; max-width: 100%; }
   padding: 15px 26px; border-radius: 16px; font-weight: 700; font-size: 0.98rem;
   text-decoration: none; border: none; cursor: pointer; transition: transform 180ms ease, box-shadow 180ms ease, opacity 180ms ease;
 }
-.button-primary { background: var(--brand); color: var(--white); box-shadow: var(--shadow-soft); }
+.button-primary { background: var(--brand); color: var(--on-brand); box-shadow: var(--shadow-soft); }
 .button-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow); background: var(--brand-dark); }
 .button-light { background: var(--white); color: var(--brand); }
 .button-light:hover { transform: translateY(-2px); }
@@ -111,13 +135,13 @@ img { display: block; max-width: 100%; }
 .hero-visual { position: relative; display: flex; justify-content: center; }
 .hero-orbit {
   position: absolute; inset: -6% 8%; border-radius: 48% 52% 55% 45% / 55% 45% 55% 45%;
-  background: radial-gradient(circle at 30% 20%, rgba(61, 74, 94, 0.16), transparent 60%),
-              radial-gradient(circle at 75% 80%, rgba(38, 122, 75, 0.12), transparent 55%);
+  background: radial-gradient(circle at 30% 20%, var(--orbit-brand), transparent 60%),
+              radial-gradient(circle at 75% 80%, var(--orbit-taken), transparent 55%);
   filter: blur(2px);
 }
 .hero-phone {
   position: relative; width: min(320px, 78vw); height: auto; border-radius: 34px; box-shadow: var(--shadow);
-  outline: 8px solid var(--brand-dark); outline-offset: -1px;
+  outline: 8px solid var(--phone-outline); outline-offset: -1px;
 }
 
 /* Proof strip */
@@ -156,7 +180,7 @@ img { display: block; max-width: 100%; }
   scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
 }
 .story-gallery::-webkit-scrollbar { height: 8px; }
-.story-gallery::-webkit-scrollbar-thumb { background: rgba(33, 42, 53, 0.16); border-radius: 8px; }
+.story-gallery::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 8px; }
 
 .story-card {
   flex: 0 0 auto; width: min(230px, 62vw); margin: 0; scroll-snap-align: start;
@@ -179,7 +203,7 @@ img { display: block; max-width: 100%; }
 .text-link:hover { text-decoration: underline; }
 
 .privacy-phone-wrap { display: flex; justify-content: center; }
-.privacy-phone { width: min(300px, 74vw); height: auto; border-radius: 32px; box-shadow: var(--shadow); outline: 8px solid var(--brand-dark); outline-offset: -1px; }
+.privacy-phone { width: min(300px, 74vw); height: auto; border-radius: 32px; box-shadow: var(--shadow); outline: 8px solid var(--phone-outline); outline-offset: -1px; }
 
 /* CTA */
 .cta-section { padding: 20px 0 76px; }
@@ -199,7 +223,7 @@ img { display: block; max-width: 100%; }
 .support-card p { color: var(--muted); font-size: 0.94rem; }
 .support-email { font-weight: 650; color: var(--ink); margin-top: 14px; }
 
-.faq details { border-top: 1px solid rgba(33, 42, 53, 0.1); padding: 14px 0; }
+.faq details { border-top: 1px solid var(--hairline-strong); padding: 14px 0; }
 .faq details:first-of-type { border-top: none; }
 .faq summary { cursor: pointer; font-weight: 660; list-style: none; display: flex; justify-content: space-between; align-items: center; }
 .faq summary::-webkit-details-marker { display: none; }
@@ -208,7 +232,7 @@ img { display: block; max-width: 100%; }
 .faq details p { margin: 12px 0 0; }
 
 /* Footer */
-.site-footer { padding: 48px 0 32px; border-top: 1px solid rgba(33, 42, 53, 0.08); }
+.site-footer { padding: 48px 0 32px; border-top: 1px solid var(--hairline); }
 .footer-grid { display: flex; justify-content: space-between; gap: 32px; flex-wrap: wrap; margin-bottom: 28px; }
 .footer-copy { color: var(--muted); max-width: 40ch; margin: 12px 0 0; font-size: 0.92rem; }
 .footer-links { display: flex; gap: 20px; flex-wrap: wrap; align-self: center; }
@@ -263,8 +287,43 @@ img { display: block; max-width: 100%; }
   .nav-links a:not(.nav-download) { display: none; }
 }
 
+/* Dark theme.
+   Every dark value lives in variables, so it can be applied two ways:
+   1. :root[data-theme="dark"] — an explicit choice from the header toggle.
+   2. The OS preference, but only when the visitor has not explicitly
+      chosen light (so the toggle can win in both directions).
+   The toggle's inline head script always stamps data-theme, so path 2
+   only matters when JavaScript is unavailable. */
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --paper: #181a1d;
+  --paper-deep: #303846;
+  --white: #24272b;
+  --ink: #eef1f5;
+  --ink-soft: #cdd4dd;
+  --muted: #93a0b2;
+  --brand: #bbc7db;
+  --brand-dark: #d6dfec;
+  --brand-soft: #303846;
+  --on-brand: #181a1d;
+  --taken: #69d69a;
+  --taken-soft: rgba(105, 214, 154, 0.14);
+  --due: #ffba52;
+  --due-soft: rgba(255, 186, 82, 0.14);
+  --header-bg: rgba(24, 26, 29, 0.86);
+  --hairline: rgba(255, 255, 255, 0.08);
+  --hairline-strong: rgba(255, 255, 255, 0.1);
+  --nav-hover: rgba(255, 255, 255, 0.07);
+  --phone-outline: rgba(255, 255, 255, 0.16);
+  --scrollbar-thumb: rgba(255, 255, 255, 0.18);
+  --orbit-brand: rgba(187, 199, 219, 0.12);
+  --orbit-taken: rgba(105, 214, 154, 0.10);
+  --shadow: 0 24px 64px rgba(0, 0, 0, 0.4), 0 6px 18px rgba(0, 0, 0, 0.26);
+  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.28), 0 2px 8px rgba(0, 0, 0, 0.16);
+}
+
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     color-scheme: dark;
     --paper: #181a1d;
     --paper-deep: #303846;
@@ -275,20 +334,25 @@ img { display: block; max-width: 100%; }
     --brand: #bbc7db;
     --brand-dark: #d6dfec;
     --brand-soft: #303846;
+    --on-brand: #181a1d;
     --taken: #69d69a;
     --taken-soft: rgba(105, 214, 154, 0.14);
     --due: #ffba52;
     --due-soft: rgba(255, 186, 82, 0.14);
+    --header-bg: rgba(24, 26, 29, 0.86);
+    --hairline: rgba(255, 255, 255, 0.08);
+    --hairline-strong: rgba(255, 255, 255, 0.1);
+    --nav-hover: rgba(255, 255, 255, 0.07);
+    --phone-outline: rgba(255, 255, 255, 0.16);
+    --scrollbar-thumb: rgba(255, 255, 255, 0.18);
+    --orbit-brand: rgba(187, 199, 219, 0.12);
+    --orbit-taken: rgba(105, 214, 154, 0.10);
     --shadow: 0 24px 64px rgba(0, 0, 0, 0.4), 0 6px 18px rgba(0, 0, 0, 0.26);
     --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.28), 0 2px 8px rgba(0, 0, 0, 0.16);
   }
-  .site-header { background: rgba(24, 26, 29, 0.86); border-bottom-color: rgba(255, 255, 255, 0.08); }
-  .nav-download:not(.is-disabled) { color: #181a1d !important; }
-  .nav-download:not(.is-disabled):hover { background: var(--brand-dark); }
-  .button-primary:not(.button-disabled) { color: #181a1d; }
-  .button-primary:not(.button-disabled):hover { background: var(--brand-dark); }
-  .button-disabled { background: var(--paper-deep); color: var(--muted); }
-  .hero-phone, .privacy-phone { outline-color: rgba(255, 255, 255, 0.16); }
-  .faq details { border-top-color: rgba(255, 255, 255, 0.1); }
-  .site-footer { border-top-color: rgba(255, 255, 255, 0.08); }
 }
+
+/* The disabled "Coming soon" states must not inherit the light-on-dark
+   brand treatment in either theme. */
+.nav-download.is-disabled,
+.button-disabled { background: var(--paper-deep); color: var(--muted) !important; }
