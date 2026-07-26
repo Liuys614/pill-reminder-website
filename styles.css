@@ -176,17 +176,19 @@ img { display: block; max-width: 100%; }
 .gallery-heading p { margin: 0; color: var(--muted); max-width: 36ch; }
 
 .story-gallery {
-  display: flex; gap: 20px; overflow-x: auto; padding: 6px 20px 24px;
+  display: flex; align-items: flex-start; gap: 20px; overflow-x: auto; padding: 6px 20px 24px;
   scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
 }
 .story-gallery::-webkit-scrollbar { height: 8px; }
 .story-gallery::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 8px; }
 
 .story-card {
-  flex: 0 0 auto; width: min(230px, 62vw); margin: 0; scroll-snap-align: start;
+  flex: 0 0 auto; width: min(272px, 70vw); margin: 0; scroll-snap-align: start;
   border-radius: 22px; overflow: hidden; box-shadow: var(--shadow-soft); background: var(--white);
 }
-.story-card img { width: 100%; height: auto; }
+/* The lead panel is a single wide composition, so it gets two cards' worth of width. */
+.story-card-wide { width: min(564px, 92vw); }
+.story-card img { width: 100%; height: auto; display: block; }
 
 /* Privacy */
 .privacy-section { background: var(--white); }
