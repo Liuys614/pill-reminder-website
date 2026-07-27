@@ -175,7 +175,12 @@ img { display: block; max-width: 100%; }
 .gallery-heading h2 { margin: 0 0 8px; font-size: clamp(1.6rem, 2.6vw, 2.2rem); letter-spacing: -0.015em; }
 .gallery-heading p { margin: 0; color: var(--muted); max-width: 36ch; }
 
+/* The panels are two different shapes — the lead one is a wide composition,
+   the rest are single portrait screens. Sizing by width would leave them
+   ragged along the bottom, so fix the height instead and let each card's
+   width follow its own aspect ratio. */
 .story-gallery {
+  --story-card-height: 589px;
   display: flex; align-items: flex-start; gap: 20px; overflow-x: auto; padding: 6px 20px 24px;
   scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
 }
@@ -183,12 +188,10 @@ img { display: block; max-width: 100%; }
 .story-gallery::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 8px; }
 
 .story-card {
-  flex: 0 0 auto; width: min(272px, 70vw); margin: 0; scroll-snap-align: start;
+  flex: 0 0 auto; height: var(--story-card-height); width: auto; margin: 0; scroll-snap-align: start;
   border-radius: 22px; overflow: hidden; box-shadow: var(--shadow-soft); background: var(--white);
 }
-/* The lead panel is a single wide composition, so it gets two cards' worth of width. */
-.story-card-wide { width: min(564px, 92vw); }
-.story-card img { width: 100%; height: auto; display: block; }
+.story-card img { height: 100%; width: auto; display: block; }
 
 /* Privacy */
 .privacy-section { background: var(--white); }
@@ -274,6 +277,7 @@ img { display: block; max-width: 100%; }
 .not-found p { color: var(--muted); margin-bottom: 26px; }
 
 @media (max-width: 880px) {
+  .story-gallery { --story-card-height: 520px; }
   .hero-grid { grid-template-columns: 1fr; gap: 40px; }
   .hero-visual { order: -1; }
   .proof-grid { grid-template-columns: repeat(2, 1fr); }
